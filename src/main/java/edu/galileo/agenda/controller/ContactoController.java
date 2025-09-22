@@ -1,8 +1,9 @@
 package edu.galileo.agenda.controller;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,8 +23,13 @@ public class ContactoController{
     }
 
     @GetMapping
-    public List<Contacto> getAll(){
-        return this.contactoService.list();
+    public Map<String, Object> getAll(){
+        List<Contacto> contactos = this.contactoService.list();
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("Estudiante", "Byron Ramírez");
+        response.put("Carnét", "13005169");
+        response.put("Contactos", contactos);
+        return response;
     }
 
     @PostMapping
